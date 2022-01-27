@@ -1,0 +1,54 @@
+<br />
+<div class="container border border-dark rounded p-3" style="background-color: bisque;">
+    <p class="text-center">Enter value to Search</p>
+    <div class="row">
+        <div class="col-sm">
+            <input class="form-control" type="text" name="name" [(ngModel)]="name" (ngModelChange)="SearchName()"
+                placeholder="Enter Name">
+        </div>
+        <div class="col-sm">
+            <input class="form-control" type="text" name="surname" [(ngModel)]="surname" (ngModelChange)="SearchSurname()"
+                placeholder="Enter Surame">
+        </div>
+        <div class="col-sm">
+            <input class="form-control" type="text" name="pincode" [(ngModel)]="pincode" (ngModelChange)="SearchPincode()"
+                placeholder="Enter Pincode">
+        </div>
+    </div>
+</div>
+
+<br /><br />
+<h2>User List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th (click)="Sort('id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('name')">First Name&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('surname')">Surname&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('email')">Email&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('city')">City&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('pincode')">Pincode&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('dob')">DOB&nbsp;<i class="fa fa-sort"></i></th>
+            <th (click)="Sort('doj')">Join Date&nbsp;<i class="fa fa-sort"></i></th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | orderBy: key: reverse">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.surname }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.city }}</td>
+            <td>{{ user.pincode }}</td>
+            <td>{{ user.dob }}</td>
+            <td>{{ user.joindate }}</td>
+            <td>
+                <button (click)="updateUser(user.id)" class="btn btn-info">Edit</button>
+                <button (click)="deleteUser(user.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button (click)="permDeleteUser(user.id)" class="btn btn-danger" style="margin-left: 10px"
+                    title="PERMANENT DELETE">X</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
